@@ -196,7 +196,13 @@ main.night .tbtn:not(.act){background:rgba(30,36,52,.88);color:#e6eaf2}
 .sol:not(.on) .si{filter:grayscale(1);opacity:.5}
 .sol .st{flex:1;min-width:0;display:flex;flex-direction:column}
 .sol .st b{font-size:13.5px}.sol .st small{font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.soltags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 4px}.soltags span{display:inline-flex;align-items:center;gap:5px;color:#fff;font-size:11.5px;font-weight:600;padding:4px 9px 4px 7px;border-radius:999px}.soltags svg{width:13px;height:13px}
+.soltags{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 2px}.soltags span{display:inline-flex;align-items:center;gap:5px;color:#fff;font-size:11.5px;font-weight:600;padding:4px 9px 4px 7px;border-radius:999px}.soltags svg{width:13px;height:13px}
+.more{margin-top:6px;border-top:1px solid var(--line);padding-top:2px}
+.more summary{cursor:pointer;font-size:13px;font-weight:650;color:var(--muted);list-style:none;display:flex;align-items:center;gap:6px;padding:8px 0;user-select:none}
+.more summary::-webkit-details-marker,.more summary::marker{display:none}
+.more summary:before{content:"";width:6px;height:6px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg);margin-top:-2px;transition:transform .15s}
+.more[open] summary:before{transform:rotate(45deg);margin-top:0}
+.more .note,.more .flowtag,.more .kv{margin-top:6px}
 .sol .sc{font-size:11.5px;font-weight:700;background:#eef0f4;color:#555b6a;border-radius:9px;padding:2px 8px;flex:none}
 .sol .so{font-size:11px;font-weight:700;color:#3d7bff;padding:3px 7px;border-radius:8px;opacity:0;flex:none}
 .sol:hover .so{opacity:1}.sol .so:hover{background:#e8f0fe}
@@ -263,7 +269,26 @@ aside .sol.on{background:#f5f8ff}aside .sol.on:hover{background:#edf3ff}
  header{gap:8px}
  .seg{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;scrollbar-width:none;flex:1;min-width:0}
  .seg::-webkit-scrollbar{display:none}
- .seg button,.btn,.pill,#filt button,.scene,aside .sbar .chip,#zonesHd,.room,.sol,.chip{min-height:44px}
+ .seg button,.btn,.pill,#filt button,.scene,aside .sbar .chip,#zonesHd,.room,.sol{min-height:44px}
+ #panel .chip{min-height:32px;padding:6px 10px;font-size:12.5px}
+ .power{margin:2px 0 10px}
+ .power button{width:68px;height:68px;box-shadow:inset 0 0 0 4px #fff,0 4px 12px rgba(0,0,0,.08)}
+ .power button svg.i{width:28px;height:28px}
+ .cam{height:108px;margin-bottom:8px}
+ .ctl{padding:8px 10px;margin-bottom:7px;border-radius:12px}
+ .ctl label{margin-bottom:4px;font-size:12px}
+ .kv{gap:6px;margin-bottom:8px}
+ .kv div{padding:7px 9px;border-radius:10px;font-size:11px}
+ .kv b{font-size:15px}
+ .ph{padding:12px 14px 6px;gap:10px}
+ .ph .bigicon{width:44px;height:44px;border-radius:14px}
+ .ph h2{font-size:17px}
+ .pb{padding:2px 14px 14px}
+ .stepper b{font-size:26px}
+ .stepper button{width:38px;height:38px}
+ .wide{padding:10px}
+ .more summary{min-height:36px}
+ .line{padding:8px 10px;margin-bottom:6px;border-radius:12px}
  #filt button{padding:8px 12px;font-size:13px}
  aside .sol{padding:10px 8px}
  #roomsList .room{padding:10px 12px;font-size:14px}
@@ -284,7 +309,8 @@ aside .sol.on{background:#f5f8ff}aside .sol.on:hover{background:#edf3ff}
  aside.open{transform:none}
  .ash{display:block}
  #solList{overflow:visible}
- #panel{width:auto;left:max(12px,env(safe-area-inset-left,0px));right:max(12px,env(safe-area-inset-right,0px));top:auto;bottom:max(14px,env(safe-area-inset-bottom,0px));height:min(52dvh,560px);border-radius:22px 22px 14px 14px;transform:translateY(120%)}
+ #panel{width:auto;left:max(12px,env(safe-area-inset-left,0px));right:max(12px,env(safe-area-inset-right,0px));top:auto;bottom:max(78px,calc(env(safe-area-inset-bottom,0px) + 64px));height:auto;max-height:min(52dvh,580px);border-radius:22px 22px 14px 14px;transform:translateY(120%)}
+ #panel .pb{min-height:0}
  #panel.open{transform:none}
  #energy{width:auto;right:max(14px,env(safe-area-inset-right,0px));left:max(14px,env(safe-area-inset-left,0px));bottom:max(96px,calc(env(safe-area-inset-bottom,0px) + 82px));max-height:min(42dvh,420px);overflow:auto;-webkit-overflow-scrolling:touch}
  #tools{left:max(12px,env(safe-area-inset-left,0px));right:max(12px,env(safe-area-inset-right,0px));max-width:none}
@@ -1590,7 +1616,7 @@ const D=[
  {id:'x_lav',name:'Lavadora',room:'garaje',type:'washer',icon:'washer',inP0:true,pos:[8.3,1.0,-1.55],s:{on:false,prog:'Eco 40-60',left:0,kwh:0.6},real:'Lavadora WiFi con inicio remoto (Home Connect / SmartThinQ) + enchufe con medición'},
  {id:'t_bat',name:'Batería doméstica',room:'garaje',type:'battery',icon:'battery',inP0:true,pos:[7.5,1.6,-0.7],s:{},real:'Huawei LUNA2000 (10 kWh)'},
  {id:'g_cam',name:'Cámara esquina NE (garaje)',room:'garaje',type:'camera',icon:'cam',fl:1,pos:[7.25,1.45,5.25],s:{on:true},real:'Cámara IP exterior en la esquina NE de la planta alta (puerta de garaje y acceso)'},
- {id:'j_riego',name:'Riego',room:'jardin',type:'irrigation',icon:'sprinkler',pos:[-3,0.9,-9.5],s:{on:false,liters:0},real:'Ej.: Gardena smart (7 aspersores, 1 zona)'},
+ {id:'j_riego',name:'Riego',room:'jardin',type:'irrigation',icon:'sprinkler',pos:[-11.0,0.9,-6.6],s:{on:false,liters:0},real:'Ej.: Gardena smart (7 aspersores, 1 zona)'},
  {id:'j_bomba',name:'Bomba piscina',room:'jardin',type:'pool',icon:'pool',pos:[10.9,0.9,-8.6],w:750,s:{on:false,wt:26.5},real:'Relé con medición + sonda'},
  {id:'j_luces',name:'Luces jardín',room:'jardin',type:'light',icon:'bulb',rgb:true,pos:[-8.2,1.3,-6.5],s:{on:false,dim:80,col:'#2f7cf6'},real:'Focos RGB exterior Zigbee'},
  {id:'n_ap2',name:'Punto de acceso Wi-Fi exterior',room:'jardin',type:'net',kind:'ap',icon:'wifi',pos:[9.5,2.5,-2.2],s:{online:true},cl:6,real:'Punto de acceso Wi-Fi 6 Mesh exterior IP67 (jardín y piscina)'},
@@ -1699,7 +1725,7 @@ const gc=document.createElement('canvas');gc.width=gc.height=128;const gx=gc.get
 const grd=gx.createRadialGradient(64,64,0,64,64,64);grd.addColorStop(0,'rgba(255,255,255,1)');grd.addColorStop(0.35,'rgba(255,255,255,.45)');grd.addColorStop(1,'rgba(255,255,255,0)');gx.fillStyle=grd;gx.fillRect(0,0,128,128);
 const glowTex=new THREE.CanvasTexture(gc);
 
-const G0=new THREE.Group(),G1=new THREE.Group(),GX=new THREE.Group();scene.add(G0,G1,GX);
+const G0=new THREE.Group(),G1=new THREE.Group(),GX=new THREE.Group();scene.add(G0,G1,GX);window.GX=GX;window.G0=G0;window.G1=G1;
 G0.position.y=0.15;
 const F1_COMPACT=3.35,F1_EXPLODE=6.6,F1_HIDDEN=13;
 G1.position.y=F1_EXPLODE;
@@ -1864,18 +1890,27 @@ const pump=box(0.5,0.45,0.4,M('#e6e8eb'),10.9,0.22,-8.6,GX);tag(pump,'j_bomba');
 [-9.2,-10.8].forEach(z=>{box(1.8,0.25,0.7,white,0.9,0.15,z,GX);});
 function tree(x,z,s){const g=new THREE.Group();cyl(0.08*s,0.11*s,1.2*s,M('#b49a7d'),0,0.6*s,0,g);const c=new THREE.Mesh(new THREE.IcosahedronGeometry(0.9*s,1),M('#a9c99b',{flatShading:true}));c.position.y=1.65*s;c.castShadow=true;g.add(c);g.position.set(x,0,z);GX.add(g);}
 tree(-10.5,-9,1.3);tree(13.6,-12.6,1.1);tree(-10.5,3,1.2);tree(14,-4,1.0);tree(-9.5,-13,0.9);tree(13.5,8.5,1.1);
-[[1,-14.5,28,0.6],[-13,-5,0.6,19]].forEach(([x,z,w,d])=>box(w,0.7,d,M('#b9d4aa'),x,0.35,z,GX));
 const fenceM=M('#f3f2ef'),fenceD=M('#4a505b');
 function fence(x1,z1,x2,z2){const hz=z1===z2;const L=Math.abs(hz?x2-x1:z2-z1),cx=(x1+x2)/2,cz=(z1+z2)/2;
  occluders.push(box(hz?L:0.2,0.45,hz?0.2:L,fenceM,cx,0.225,cz,GX));[0.85,1.3].forEach(y=>box(hz?L:0.05,0.06,hz?0.05:L,fenceD,cx,y,cz,GX));
  const n=Math.max(1,Math.round(L/2.2));for(let i=0;i<=n;i++){const t=i/n;box(0.07,1.0,0.07,fenceD,hz?x1+(x2-x1)*t:x1,0.9,hz?z1:z1+(z2-z1)*t,GX);}}
-fence(-13,12.5,-2.25,12.5);fence(0.25,12.5,7.5,12.5);fence(11.5,12.5,15,12.5);fence(-13,4.5,-13,12.5);fence(15,-14.5,15,12.5);
+// Valla en todo el perímetro; huecos solo para la cancela peatonal y la de vehículos (lado N)
+fence(-13,12.5,-2.25,12.5);fence(0.25,12.5,7.5,12.5);fence(11.5,12.5,15,12.5);
+fence(-13,-14.5,-13,12.5);fence(15,-14.5,15,12.5);fence(-13,-14.5,15,-14.5);
+// Seto paralelo, justo por dentro de la valla, con los mismos huecos
+const hedgeM=M('#b9d4aa');
+function hedge(x1,z1,x2,z2){const hz=z1===z2;const L=Math.abs(hz?x2-x1:z2-z1),cx=(x1+x2)/2,cz=(z1+z2)/2;
+ box(hz?L:0.55,0.75,hz?0.55:L,hedgeM,cx,0.38,cz,GX);}
+const HI=0.55;
+hedge(-13+HI,-14.5+HI,-13+HI,12.5-HI);hedge(15-HI,-14.5+HI,15-HI,12.5-HI);
+hedge(-13+HI,-14.5+HI,15-HI,-14.5+HI);
+hedge(-13+HI,12.5-HI,-2.25,12.5-HI);hedge(0.25,12.5-HI,7.5,12.5-HI);hedge(11.5,12.5-HI,15-HI,12.5-HI);
 [-2.05,0.05].forEach(x=>occluders.push(box(0.36,1.6,0.36,fenceM,x,0.8,12.5,GX)));
 const gate=new THREE.Group();box(1.7,0.05,0.05,fenceD,0.85,1.35,0,gate);box(1.7,0.05,0.05,fenceD,0.85,0.25,0,gate);for(let i=0;i<9;i++)box(0.035,1.1,0.035,fenceD,0.1+i*0.19,0.8,0,gate);gate.position.set(-1.87,0,12.5);GX.add(gate);tag(gate,'e_timbre');
 const vgate=new THREE.Group();box(4,1.2,0.05,M('#5a606b'),0,0.8,0,vgate);for(let i=0;i<8;i++)box(4,0.03,0.07,fenceD,0,0.3+i*0.14,0,vgate,{noCast:true});vgate.position.set(9.5,0,12.5);GX.add(vgate);
 const bell=box(0.16,0.26,0.06,dark,-2.05,1.3,12.7,GX);tag(bell,'e_timbre');
 flat(1.6,1.3,'#ecebe6',-1,12.7);flat(40,2.4,'#d6d6d2',1,14.2);
-const sprays=[],ripples=[];const SPR=[[-3,-10],[-9.5,-3],[-9,-10.5],[-5,-13.2],[-0.8,-13.4],[13,-8.8],[12.5,-1.5]];
+const sprays=[],ripples=[];const SPR=[[-11.0,8.2],[-11.2,1.0],[-11.0,-6.6],[-8.0,-12.0],[-4.0,-12.2],[13.6,-10.2],[13.5,-6.3]];
 const dropN=170,dropGeo=new THREE.BufferGeometry();dropGeo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(SPR.length*dropN*3),3));
 const drops=new THREE.Points(dropGeo,new THREE.PointsMaterial({color:'#2f9bff',size:0.12,transparent:true,opacity:0.95,depthWrite:false}));drops.visible=false;drops.frustumCulled=false;GX.add(drops);
 SPR.forEach(([x,z])=>{const hd=cyl(0.06,0.08,0.18,dark,x,0.09,z,GX);tag(hd,'j_riego');});
@@ -2005,6 +2040,40 @@ const WASH={};
 {const g=new THREE.Group();box(0.4,0.32,0.18,M('#eceef1'),0,0.25,0,g);const dial=cyl(0.08,0.08,0.02,M('#2f7cf6',{emissive:'#2f7cf6',emissiveIntensity:0.3}),0,0.27,0.1,g);dial.rotation.x=Math.PI/2;
  g.position.set(-2.75,0,12.2);GX.add(g);tag(g,'x_agua');}
 
+// Tejado a cuatro aguas sobre las estancias (no cubre la terraza del garaje). Solo visible en vista Exterior.
+const ROOF=new THREE.Group();ROOF.name='roof';ROOF.visible=false;G1.add(ROOF);window.ROOF=ROOF;
+{const x0=-7.35,x1=7.35,z0=-5.35,z1=5.35,ye=2.72,yp=4.25,xr0=-4.3,xr1=4.3;
+ const tile=M('#c56a48',{roughness:0.88,metalness:0.04,side:THREE.DoubleSide});
+ const soffit=M('#f3efe9',{roughness:0.92,side:THREE.DoubleSide});
+ const fascia=M('#e7e2da',{roughness:0.8});
+ box(x1-x0+0.08,0.07,z1-z0+0.08,soffit,0,ye-0.05,0,ROOF,{noCast:true});
+ function roofFace(pts,mat){const g=new THREE.BufferGeometry(),v=[];pts.forEach(p=>v.push(p.x,p.y,p.z));
+  const idx=pts.length===4?[0,1,2,0,2,3]:[0,1,2];const out=[];idx.forEach(i=>{out.push(v[i*3],v[i*3+1],v[i*3+2]);});
+  g.setAttribute('position',new THREE.Float32BufferAttribute(out,3));g.computeVertexNormals();
+  const m=new THREE.Mesh(g,mat);m.castShadow=true;m.receiveShadow=true;ROOF.add(m);}
+ const V=(x,y,z)=>new THREE.Vector3(x,y,z);
+ const nw=V(x0,ye,z1),ne=V(x1,ye,z1),se=V(x1,ye,z0),sw=V(x0,ye,z0),rn=V(xr0,yp,0),re=V(xr1,yp,0);
+ roofFace([nw,ne,re,rn],tile);roofFace([sw,rn,re,se],tile);roofFace([nw,rn,sw],tile);roofFace([ne,se,re],tile);
+ box(xr1-xr0+0.2,0.07,0.1,M('#a85a3d',{roughness:0.7}),0,yp+0.03,0,ROOF);
+ [[0,z1],[0,z0]].forEach(([x,z])=>box(x1-x0+0.08,0.1,0.1,fascia,x,ye,z,ROOF));
+ [[x0,0],[x1,0]].forEach(([x,z])=>box(0.1,0.1,z1-z0+0.08,fascia,x,ye,z,ROOF));
+ // Cierre de fachadas (solo en esta vista) para no ver el interior de canto
+ const shell=M('#f7f6f3',{roughness:0.9}),glass=M('#6a8496',{roughness:0.18,metalness:0.28,transparent:true,opacity:0.94});
+ const yb=-3.18,H=ye-yb,yc=(ye+yb)/2;
+ function shellWall(hz,a,b,px,pz){const L=b-a;if(L<0.08)return;box(hz?L:0.16,H,hz?0.16:L,shell,hz?(a+b)/2:px,yc,hz?pz:(a+b)/2,ROOF);}
+ function shellSegs(hz,a0,b0,px,pz,gaps){let segs=[[a0,b0]];(gaps||[]).forEach(([c,w])=>{segs=segs.flatMap(([a,b])=>(c-w/2>a&&c+w/2<b)?[[a,c-w/2],[c+w/2,b]]:[[a,b]]);});segs.forEach(([a,b])=>shellWall(hz,a,b,px,pz));}
+ shellSegs(true,-7.0,7.0,0,5.08,[[-1,1.3]]);
+ shellSegs(true,-7.0,7.0,0,-5.08,[[-3.5,2.6]]);
+ shellSegs(false,-5.0,5.0,-7.08,0,[]);
+ shellSegs(false,-5.0,5.0,7.08,0,[[0.2,0.9]]);
+ // Bandas de vidrio (planta baja y planta alta)
+ const g0y=-2.25,g1y=0.95,gH=1.05;
+ function glassBand(hz,a,b,px,pz,y){const L=b-a;if(L<0.2)return;box(hz?L-0.15:0.04,gH,hz?0.04:L-0.15,glass,hz?(a+b)/2:px,y,hz?pz:(a+b)/2,ROOF,{noCast:true});}
+ [[true,-6.6,-1.85,0,5.17],[true,0.0,6.6,0,5.17],[true,-6.6,-5.0,0,-5.17],[true,-1.0,6.6,0,-5.17],[false,-4.6,4.6,-7.17,0],[false,-4.6,-0.4,7.17,0],[false,0.8,4.6,7.17,0]].forEach(r=>{
+  const [hz,a,b,px,pz]=r;glassBand(hz,a,b,px,pz,g0y);glassBand(hz,a,b,px,pz,g1y);
+ });
+}
+
 let view='all',selRoom=null,selDev=null,night=false,cine=false;
 function ctColor(k){const t=(k-2700)/(6500-2700);return new THREE.Color().setRGB(1,0.78+0.2*t,0.55+0.45*t);}
 function applyDevice(d){
@@ -2055,13 +2124,13 @@ function onState(d){if(FEXCL.includes(d.type))return null;const s=d.s;switch(d.t
 let filt='all';
 // Soluciones por PARA QUÉ se usa cada dispositivo (un dispositivo puede estar en varias)
 const SOLDEF=[
- {id:'luz',n:'Iluminación inteligente',ic:'bulb',col:'#f5a524',t:'Regulación de intensidad (dimmer), cambio de temperatura de color, escenas lumínicas y encendidos automáticos por presencia o luminosidad exterior.'},
- {id:'clima',n:'Gestión de clima (Climatización inteligente)',ic:'thermo',col:'#ff7a2f',t:'Control zonificado de calefacción y aire acondicionado, crono-termostatos y ventiladores. El apagado automático por ventana abierta (F28) sigue activo como automatización.'},
- {id:'cerr',n:'Automatización de cerramientos',ic:'blind',col:'#3d7bff',t:'Persianas, toldos y cortinas motorizadas que se adaptan a la hora del día, la posición del sol o las condiciones meteorológicas.'},
- {id:'seg',n:'Seguridad, vigilancia y control de accesos',ic:'shield',col:'#ef4444',t:'Alarmas de intrusión, sensores perimetrales, cámaras de videovigilancia, cerraduras inteligentes, automatización de puertas de garaje, gestión de accesos temporales y protección técnica (humo, monóxido de carbono y fugas de agua).'},
- {id:'ener',n:'Eficiencia y monitorización energética',ic:'zap',col:'#22b573',t:'Medición en tiempo real de consumos (electricidad, agua, gas) y gestión de excedentes de autoconsumo fotovoltaico.'},
- {id:'disp',n:'Dispositivos y electrodomésticos inteligentes',ic:'robot',col:'#64748b',t:'Integración de robots aspiradores, lavadoras, termos eléctricos y otros aparatos conectados.'},
- {id:'red',n:'Networking y conectividad (Redes)',ic:'network',col:'#0ea5a4',t:'Infraestructura de red robusta que soporta todo el sistema, incluyendo routers avanzados, puntos de acceso Wi-Fi mallados (Mesh), switches gestionables, cableado estructurado y redes dedicadas para dispositivos IoT (como VLANs o redes separadas).'}];
+ {id:'luz',n:'Iluminación inteligente',ns:'Iluminación',ic:'bulb',col:'#f5a524',t:'Regulación de intensidad (dimmer), cambio de temperatura de color, escenas lumínicas y encendidos automáticos por presencia o luminosidad exterior.'},
+ {id:'clima',n:'Gestión de clima (Climatización inteligente)',ns:'Clima',ic:'thermo',col:'#ff7a2f',t:'Control zonificado de calefacción y aire acondicionado, crono-termostatos y ventiladores. El apagado automático por ventana abierta (F28) sigue activo como automatización.'},
+ {id:'cerr',n:'Automatización de cerramientos',ns:'Cerramientos',ic:'blind',col:'#3d7bff',t:'Persianas, toldos y cortinas motorizadas que se adaptan a la hora del día, la posición del sol o las condiciones meteorológicas.'},
+ {id:'seg',n:'Seguridad, vigilancia y control de accesos',ns:'Seguridad',ic:'shield',col:'#ef4444',t:'Alarmas de intrusión, sensores perimetrales, cámaras de videovigilancia, cerraduras inteligentes, automatización de puertas de garaje, gestión de accesos temporales y protección técnica (humo, monóxido de carbono y fugas de agua).'},
+ {id:'ener',n:'Eficiencia y monitorización energética',ns:'Energía',ic:'zap',col:'#22b573',t:'Medición en tiempo real de consumos (electricidad, agua, gas) y gestión de excedentes de autoconsumo fotovoltaico.'},
+ {id:'disp',n:'Dispositivos y electrodomésticos inteligentes',ns:'Dispositivos',ic:'robot',col:'#64748b',t:'Integración de robots aspiradores, lavadoras, termos eléctricos y otros aparatos conectados.'},
+ {id:'red',n:'Networking y conectividad (Redes)',ns:'Red',ic:'network',col:'#0ea5a4',t:'Infraestructura de red robusta que soporta todo el sistema, incluyendo routers avanzados, puntos de acceso Wi-Fi mallados (Mesh), switches gestionables, cableado estructurado y redes dedicadas para dispositivos IoT (como VLANs o redes separadas).'}];
 const SM={e_luz:'luz',e_mov:'luz seg',e_nuki:'seg',e_termo:'clima',e_cuadro:'ener',e_timbre:'seg',e_cam:'seg',
  s_techo:'luz',s_led:'luz',s_pers:'cerr',s_tv:'disp',s_hc:'disp',s_cam:'seg',s_rad:'clima',s_perg:'cerr',
  c_luz:'luz',c_cafe:'disp ener',c_ind:'disp ener',c_humo:'seg',c_fuga:'seg',c_rad:'clima',
@@ -2158,9 +2227,10 @@ function updateMarker(d){if(!d.el)return;const a=isActive(d);
   d.el.className='marker temp '+(DM.e_termo.s.mode==='Apagado'||winOpen(d.room)?'offc':o>0?'heat':'ok')+(oc?' occ':'')+(selDev===d.id?' sel':'')+(selRoom&&selRoom!==d.room&&selRoom!=='global'?' dim':'')+fCls(d);return;}const oc=d.el.classList.contains('occ');d.el.className='marker'+(oc?' occ':'')+(camRec(d)?' rec':'')+(a?' act '+accent(d):'')+(isAlert(d)?' alert':'')+(selDev===d.id?' sel':'')+(selRoom&&selRoom!==d.room&&selRoom!=='global'?' dim':'')+fCls(d);}
 function floorGroup(f){return f===1?G1:f===0?G0:GX;}
 function devGroup(d){return d.g==='GX'?GX:floorGroup(d.floor);}
-function devVisible(d){return (visibleFloor(d.floor)||(view==='p0'&&d.inP0))&&(d.floor!==1||G1.visible);}
+function devVisible(d){if(view==='ext')return isExtShown(d);return (visibleFloor(d.floor)||(view==='p0'&&d.inP0))&&(d.floor!==1||G1.visible);}
 const v3=new THREE.Vector3();
 function visibleFloor(f){if(view==='all')return true;if(view==='p0')return f===0;if(view==='p1')return f===1;if(view==='ext')return f===2;return true;}
+function isExtShown(d){return d.floor===2||d.g==='GX'||d.inP0||d.type==='camera'||d.id==='s_perg'||d.id==='dm_toldo';}
 function project(x,y,z,g){v3.set(x,y,z);g.localToWorld(v3);v3.project(camera);const w=main.clientWidth,h=main.clientHeight;return {x:(v3.x+1)/2*w,y:(1-v3.y)/2*h,ok:v3.z<1};}
 const LABPOS={salon:[-5,0.1,0.2],cocina:[1.9,0.1,0.2],dormp:[-4.4,0.1,0.2],dorm:[2.4,0.1,0.2],terraza:[10.4,3.3,3.0],garaje:[12.4,0.2,6.6],jardin:[3.5,0.1,-13.2],pas1:[0.75,0.1,3.4],entrada:[-1,0.1,1.6],despacho:[-5,0.1,1.6],aseo:[2.25,0.1,2.2],bano:[-4.2,0.1,3.2]};
 const occRay=new THREE.Raycaster(),wp=new THREE.Vector3();let occTick=0;
@@ -2184,7 +2254,7 @@ let fly=null;
 function flyTo(pos,tgt,ms){fly={p0:camera.position.clone(),t0:controls.target.clone(),p1:new THREE.Vector3(...pos),t1:new THREE.Vector3(...tgt),t:0,ms:ms||900};}
 function vtgt(v){const V=VIEWS[v];const a=main.clientWidth/Math.max(1,main.clientHeight);return v==='all'&&a<0.8?[V.tgt[0],V.tgt[1]-1.2,V.tgt[2]]:V.tgt;}
 function vpos(v){const V=VIEWS[v];const a=main.clientWidth/Math.max(1,main.clientHeight);let k=1;if(v==='all'&&a<1)k=Math.min(1.2,0.78/a);else if(v==='all'&&a>1.45)k=0.92;const T=vtgt(v);return T.map((t,i)=>t+(V.pos[i]-V.tgt[i])*k);}
-function setView(v,noFly){view=v;const V=VIEWS[v];f1Target=V.f1;f1Op=V.op;
+function setView(v,noFly){view=v;const V=VIEWS[v];f1Target=V.f1;f1Op=V.op;if(typeof ROOF!=='undefined')ROOF.visible=(v==='ext');
  document.querySelectorAll('#views button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));if(!noFly)flyTo(vpos(v),vtgt(v));}
 document.querySelectorAll('#views button').forEach(b=>b.onclick=()=>{selRoom=null;selDev=null;renderRooms();closePanel();setView(b.dataset.v);});
 function roomCenter(r){const y=r.floor===1?F1_COMPACT:r.id==='terraza'?3.2:0;return [(r.x[0]+r.x[1])/2,y,(r.z[0]+r.z[1])/2];}
@@ -2202,7 +2272,8 @@ function renderRooms(){let h='';FLOORS.forEach(f=>{h+='<h3>'+f.n+'</h3>';f.ids.f
 
 // panel
 const panel=document.getElementById('panel'),ph=document.getElementById('ph'),pb=document.getElementById('pb');
-function closePanel(){panel.classList.remove('open');selDev=null;D.forEach(updateMarker);}
+let moreOpen=false;
+function closePanel(){panel.classList.remove('open');selDev=null;moreOpen=false;D.forEach(updateMarker);}
 function tileHTML(d){const a=isActive(d);return '<button class="tile'+(a?' act '+accent(d):'')+'" data-dev="'+d.id+'"><span class="ti">'+I(d.icon)+'</span><b>'+d.name+'</b><span>'+stateText(d)+'</span></button>';}
 function showRoomPanel(id){const r=RM[id];const ds=D.filter(d=>d.room===id);
  ph.innerHTML='<div class="bigicon">'+I(id==='global'?'home':id==='jardin'?'pool':id==='garaje'?'garage':id==='terraza'?'sun':'sofa')+'</div><div><h2>'+r.name+'</h2><div class="sub">'+(r.floor===0?'Planta baja':r.floor===1?'Primera planta':r.floor===2?'Exterior':'Sistemas de toda la casa')+' · '+ds.length+' dispositivos</div></div><button class="x" data-close>'+I('x')+'</button>';
@@ -2221,19 +2292,19 @@ function bigPower(d,on){return '<div class="power"><button class="'+(on?'on '+ac
 function kv(pairs){return '<div class="kv">'+pairs.map(p=>'<div>'+p[0]+'<b>'+p[1]+'</b></div>').join('')+'</div>';}
 const FLOWNOTE={s_perg:'Si la estación meteorológica detecta lluvia, las lamas se cierran solas.',dm_toldo:'Se recoge solo si la estación meteorológica detecta lluvia.',j_meteo:'Lluvia → se pausa el riego, se cierran las lamas de la pérgola y se recoge el toldo.',e_cam:'Graba (REC) con la alarma armada: “Salgo de casa” o “Vacaciones”.',s_cam:'Graba (REC) con la alarma armada.',g_cam:'Graba (REC) con la alarma armada.',j_cam:'Graba (REC) con la alarma armada.',e_termo:'“Buenos días” → Confort · “Salgo de casa” → Eco · “Buenas noches” → Noche · “Vacaciones” → Ausencia.',e_cuadro:'Cada línea mide su consumo; si salta o se apaga, Homey avisa al móvil.',e_timbre:'Ves quién llama en el móvil y abres la cancela desde cualquier sitio.',s_hc:'“Modo cine” lo enciende con audio envolvente.',dm_fan:'Con más de 26° en el dormitorio, el ventilador se enciende en velocidad 2.',dp_pers:'Se abre con “Buenos días” y se cierra con “Buenas noches”.',e_luz:'Se enciende sola al detectar movimiento en la entrada (si hay poca luz).',e_mov:'Dispara la luz de la entrada y, con la alarma armada, envía un aviso.',b_termo:'Se enciende cuando hay excedente solar y se apaga cuando no lo hay.',g_carg:'Carga inteligente: prioriza el excedente solar.',x_alarma:'Se arma con “Salgo de casa” y en modo parcial con “Buenas noches”.',s_pers:'Sube con “Buenos días” y baja con “Modo cine” o “Buenas noches”.',x_robot:'Empieza a limpiar con “Salgo de casa”.',e_nuki:'Se cierra sola con “Salgo de casa” y “Buenas noches”.',s_rad:'Abre o cierra según la consigna de su zona.'};
 function camSVG(){return '<svg viewBox="0 0 200 120" fill="none" stroke="#fff" stroke-width="2"><rect x="70" y="20" width="60" height="100"/><circle cx="120" cy="72" r="3"/><path d="M0 120 70 95M200 120 130 95"/></svg>';}
-function deviceBody(d){const s=d.s;let h='';const hr=SCN[scen].clock.split(' ')[0];
+function deviceBody(d){const s=d.s;let h='',extra='';const hr=SCN[scen].clock.split(' ')[0];
  switch(d.type){
  case 'light':h+=bigPower(d,s.on)+slider('dim','Intensidad',s.dim,1,100,'%');
   if(d.rgb)h+='<div class="ctl"><label><span>Color</span></label><div class="row">'+['#ffd59a','#fff4e0','#ff6b6b','#ffb648','#22b573','#2f7cf6','#8b5cf6','#ff4fb3'].map(c=>'<button class="sw'+(s.col===c?' on':'')+'" style="background:'+c+'" data-set="col" data-v="'+c+'"></button>').join('')+'</div></div>';
   if(d.tw)h+=slider('ct','Temperatura de color',s.ct,2700,6500,' K',100);break;
- case 'motion':h+=kv([['Estado',s.motion?'Movimiento':'Sin movimiento'],['Luminosidad',s.lux+' lx'],['Batería','92%'],['Último evento','hace 4 min']])+'<button class="wide" data-act="motion">Simular movimiento</button>';break;
- case 'contact':{const lk=d.link&&DM[d.link];h+=kv([['Apertura',s.open?'Abierta':'Cerrada'],['Vibración',s.vib?'¡Detectada!':'No'],['Alarma',DM.x_alarma.s.mode],['Batería','88%']])+'<div class="row"><button class="chip'+(s.open?' on':'')+'" data-act="copen">'+(s.open?'Simular cierre':'Simular apertura')+'</button><button class="chip" data-act="vib">Simular vibración</button></div>'+(lk?'<div class="note">Va ligado a <b>'+lk.name+'</b>: se abre y se cierra con ella.</div>':'')+'<div class="note">Con la alarma armada (total o parcial), abrir esta '+(d.icon==='window'?'ventana':'puerta')+' dispara la <b>intrusión</b>. La vibración avisa de un posible intento de forzado.</div>';break;}
+ case 'motion':h+=kv([['Estado',s.motion?'Movimiento':'Sin movimiento'],['Luminosidad',s.lux+' lx']])+'<button class="wide" data-act="motion">Simular movimiento</button>';extra+=kv([['Batería','92%'],['Último evento','hace 4 min']]);break;
+ case 'contact':{const lk=d.link&&DM[d.link];h+=kv([['Apertura',s.open?'Abierta':'Cerrada'],['Vibración',s.vib?'¡Detectada!':'No'],['Alarma',DM.x_alarma.s.mode]])+'<div class="row"><button class="chip'+(s.open?' on':'')+'" data-act="copen">'+(s.open?'Simular cierre':'Simular apertura')+'</button><button class="chip" data-act="vib">Simular vibración</button></div>';extra+=kv([['Batería','88%']])+(lk?'<div class="note">Va ligado a <b>'+lk.name+'</b>: se abre y se cierra con ella.</div>':'')+'<div class="note">Con la alarma armada, abrir esta '+(d.icon==='window'?'ventana':'puerta')+' dispara la <b>intrusión</b>. La vibración avisa de un posible intento de forzado.</div>';break;}
  case 'pergola':{const ang=Math.round(s.pos*0.85);h+=slider('pos','Apertura de lamas',s.pos,0,100,'%',5)+'<div class="row"><button class="chip" data-set="pos" data-v="100">Abrir</button><button class="chip" data-set="pos" data-v="50">50%</button><button class="chip" data-set="pos" data-v="0">Cerrar</button></div>'+kv([['Ángulo de lamas',ang+'°'],['Lluvia',DM.j_meteo.s.rain?'Sí · cerrada':'No'],['Viento',DM.j_meteo.s.wind+' km/h']]);break;}
- case 'awning':h+=slider('pos','Extensión',s.pos,0,100,'%',5)+'<div class="row"><button class="chip" data-set="pos" data-v="100">Extender</button><button class="chip" data-set="pos" data-v="50">50%</button><button class="chip" data-set="pos" data-v="0">Recoger</button></div>'+kv([['Viento',DM.j_meteo.s.wind+' km/h'],['Sensor de viento','Recoge con más de 40 km/h']]);break;
+ case 'awning':h+=slider('pos','Extensión',s.pos,0,100,'%',5)+'<div class="row"><button class="chip" data-set="pos" data-v="100">Extender</button><button class="chip" data-set="pos" data-v="50">50%</button><button class="chip" data-set="pos" data-v="0">Recoger</button></div>'+kv([['Viento',DM.j_meteo.s.wind+' km/h']]);extra+='<div class="note">Se recoge solo con viento de más de 40 km/h.</div>';break;
  case 'weather':h+=kv([['Temperatura',dec(s.t)+'°'],['Humedad',s.h+'%'],['Precipitación',(s.rain?dec(s.rain)+' mm/h':'0 mm/h')+' · hoy '+dec(s.rday.toFixed(1))+' mm'],['Humedad del suelo',Math.round(s.soil)+'%'],['Viento',s.wind+' km/h'],['Batería','100% (solar)']])+'<button class="wide" data-act="rain">'+(s.rain?'Parar lluvia':'Simular lluvia')+'</button>';break;
- case 'lock':h+='<div class="power"><button class="'+(!s.locked?'on c-red':'')+'" data-act="lock">'+I('lock')+'</button></div>'+kv([['Estado',s.locked?'Cerrada':'Abierta'],['Batería','76%']])+'<div class="note">Acceso con código temporal para invitados o para el personal de limpieza.</div>';break;
+ case 'lock':h+='<div class="power"><button class="'+(!s.locked?'on c-red':'')+'" data-act="lock">'+I('lock')+'</button></div>'+kv([['Estado',s.locked?'Cerrada':'Abierta'],['Batería','76%']]);extra+='<div class="note">Acceso con código temporal para invitados o para el personal de limpieza.</div>';break;
 
- case 'trv':{const o=trvOpen(d);h+=kv([['Temperatura actual',dec(s.cur.toFixed(1))+'°'],['Consigna',dec(trvTarget(d))+'°'],['Apertura válvula',o+'%'],['Zona',d.zone?'Planta alta':'Planta baja']])+'<div class="ctl"><label><span>Apertura</span><span>'+(o>0?'Calentando hasta '+dec(trvTarget(d))+'°':'En consigna')+'</span></label><div class="bar"><i style="width:'+o+'%"></i></div></div><div class="ctl"><label><span>Ajuste de esta habitación</span><span>'+(s.off>0?'+':'')+dec(s.off)+'° sobre la zona</span></label><div class="stepper"><button data-inc="off" data-v="-0.5">−</button><b>'+dec(trvTarget(d))+'°</b><button data-inc="off" data-v="0.5">+</button></div></div><div class="note">Radiador de agua (caldera o aerotermia). La válvula abre más cuanto más lejos está de su consigna.</div>'+(winOpen(d.room)?'<div class="fnote"><span><b>Calefacción pausada:</b> hay una ventana abierta en '+RM[d.room].name+'. Se reanuda al cerrarla.</span></div>':'');break;}
+ case 'trv':{const o=trvOpen(d);h+=kv([['Temperatura',dec(s.cur.toFixed(1))+'°'],['Consigna',dec(trvTarget(d))+'°'],['Válvula',o+'%'],['Zona',d.zone?'Planta alta':'Planta baja']])+'<div class="ctl"><label><span>Apertura</span><span>'+(o>0?'Calentando hasta '+dec(trvTarget(d))+'°':'En consigna')+'</span></label><div class="bar"><i style="width:'+o+'%"></i></div></div><div class="ctl"><label><span>Ajuste habitación</span><span>'+(s.off>0?'+':'')+dec(s.off)+'° sobre la zona</span></label><div class="stepper"><button data-inc="off" data-v="-0.5">−</button><b>'+dec(trvTarget(d))+'°</b><button data-inc="off" data-v="0.5">+</button></div></div>'+(winOpen(d.room)?'<div class="fnote"><span><b>Calefacción pausada:</b> ventana abierta en '+RM[d.room].name+'.</span></div>':'');extra+='<div class="note">Radiador de agua (caldera o aerotermia). La válvula abre más cuanto más lejos está de su consigna.</div>';break;}
  case 'fanlight':h+=bigPower(d,s.on)+slider('dim','Intensidad luz',s.dim,1,100,'%')+'<div class="ctl"><label><span>Ventilador</span><span>'+(s.fan?'Girando':'Parado')+'</span></label><div class="row"><button class="chip'+(s.fan?' on':'')+'" data-act="fan">'+(s.fan?'Parar aspas':'Encender aspas')+'</button>'+[1,2,3].map(v=>'<button class="chip'+(s.fan&&s.speed===v?' on':'')+'" data-set="speed" data-v="'+v+'">Vel. '+v+'</button>').join('')+'</div></div>';break;
  case 'curtain':h+=slider('pos','Apertura',s.pos,0,100,'%',5)+'<div class="row"><button class="chip" data-set="pos" data-v="100">Abrir</button><button class="chip" data-set="pos" data-v="50">50%</button><button class="chip" data-set="pos" data-v="0">Cerrar</button></div>';break;
  case 'panel':{let tot=0;h+='<div class="sect" style="margin-top:4px">Líneas del cuadro</div>';Object.entries(LINES).forEach(([k,n])=>{const l=s.lines[k];const w=lineW(k);tot+=w;h+='<div class="line"><div><b>'+n+'</b><span><span id="lw_'+k+'">'+fmtW(w)+'</span> · hoy <span id="lk_'+k+'">'+dec(l.kwh.toFixed(1))+'</span> kWh</span></div><button class="tog'+(l.on?' on':'')+'" data-line="'+k+'"></button></div>';});
@@ -2244,12 +2315,12 @@ function deviceBody(d){const s=d.s;let h='';const hr=SCN[scen].clock.split(' ')[
  case 'tv':h+=bigPower(d,s.on)+slider('vol','Volumen',s.vol,0,100,'')+'<div class="ctl"><label><span>Canal</span></label>'+chips('ch',[1,2,3,4,5],s.ch)+'</div>';break;
  case 'speaker':h+=bigPower(d,s.on)+slider('vol','Volumen',s.vol,0,100,'%')+kv([['Reproduciendo',s.song],['Altavoces','Barra + 2 traseros']]);break;
  case 'thermostat':{const z=(n,k,zi)=>'<div class="ctl"><label><span>'+n+'</span><span>Actual '+dec(zoneCur(zi).toFixed(1))+'°</span></label><div class="stepper"><button data-inc="'+k+'" data-v="-0.5">−</button><b>'+dec(s[k])+'°</b><button data-inc="'+k+'" data-v="0.5">+</button></div><div class="mini">'+D.filter(x=>x.type==='trv'&&x.zone===zi).map(x=>RM[x.room].name+' <b>'+trvOpen(x)+'%</b>').join(' · ')+'</div></div>';
-  h+='<div class="ctl"><label><span>Modo</span></label>'+chips('mode',['Confort','Noche','Eco','Ausencia','Apagado'],s.mode)+'</div>'+z('Planta baja','z0',0)+z('Planta alta','z1',1)+'<div class="note">Cada radiador “trabaja” para su consigna (zona ± ajuste de la habitación) y abre su válvula más o menos.</div>';break;}
+  h+='<div class="ctl"><label><span>Modo</span></label>'+chips('mode',['Confort','Noche','Eco','Ausencia','Apagado'],s.mode)+'</div>'+z('Planta baja','z0',0)+z('Planta alta','z1',1);extra+='<div class="note">Cada radiador trabaja para su consigna (zona ± ajuste de la habitación) y abre su válvula más o menos.</div>';break;}
  case 'plug':h+=bigPower(d,s.on)+kv([['Potencia',s.on?fmtW(d.w):'0 W'],['Hoy',dec((d.w*0.0021).toFixed(1))+' kWh']]);if(d.boiler)h+=kv([['Temperatura agua',s.temp+'°'],['Modo','Solar automático']]);break;
  case 'smoke':h+=kv([['Humo',s.alarm?'¡Detectado!':'No'],['Monóxido (CO)',s.co?'¡120 ppm!':'0 ppm'],['Batería','95%']])+'<button class="wide" data-act="smoke">'+(s.alarm?'Silenciar humo':'Probar alarma de humo')+'</button><button class="wide light" data-act="co" style="margin-top:8px">'+(s.co?'Silenciar CO':'Probar alarma de CO')+'</button>';break;
  case 'net':h+=netBody(d);break;
  case 'washer':{const P0=PROG[s.prog];h+=bigPower(d,s.on)+'<div class="ctl"><label><span>Programa</span></label>'+chips('prog',Object.keys(PROG),s.prog)+'</div>'+kv([['Estado',s.on?'Lavando':'Parada'],['Potencia',s.on?fmtW(P0.w):'0 W'],['Tiempo restante',s.on?Math.ceil(s.left)+' min':P0.min+' min (programa)'],['Hoy',dec(s.kwh.toFixed(1))+' kWh']]);break;}
- case 'water':h+=kv([['Caudal',waterFlow()+' L/min'],['Hoy',Math.round(s.today)+' L'],['Este mes','7,4 m³'],['Fuga','Sin caudal continuo']])+'<div class="note">Riego (14 L/min) y lavadora (6 L/min) suman caudal cuando están en marcha. El gas no se mide: la casa es 100 % eléctrica (aerotermia y termo).</div>';break;
+ case 'water':h+=kv([['Caudal',waterFlow()+' L/min'],['Hoy',Math.round(s.today)+' L'],['Este mes','7,4 m³'],['Fuga','Sin caudal continuo']]);extra+='<div class="note">Riego (14 L/min) y lavadora (6 L/min) suman caudal cuando están en marcha. El gas no se mide: la casa es 100 % eléctrica (aerotermia y termo).</div>';break;
  case 'leak':h+=kv([['Estado',s.leak?'¡Fuga!':'Seco'],['Batería','90%']])+'<button class="wide" data-act="leak">'+(s.leak?'Resolver':'Simular fuga')+'</button>';break;
  case 'ac':h+=(winOpen(d.room)?'<div class="fnote"><span><b>Aire pausado:</b> hay una ventana abierta en '+RM[d.room].name+'. Se reanuda al cerrarla.</span></div>':'')+bigPower(d,s.on)+'<div class="ctl"><label><span>Consigna</span></label><div class="stepper"><button data-inc="target" data-v="-1">−</button><b>'+s.target+'°</b><button data-inc="target" data-v="1">+</button></div></div><div class="ctl"><label><span>Modo</span></label>'+chips('mode',['Frío','Calor','Auto','Seco'],s.mode)+'</div><div class="ctl"><label><span>Ventilador</span></label>'+chips('fan',['Auto','Bajo','Medio','Alto'],s.fan)+'</div>';break;
  case 'temphum':h+=kv([['Temperatura',dec(s.t)+'°'],['Humedad',s.h+'%']]);break;
@@ -2264,17 +2335,20 @@ function deviceBody(d){const s=d.s;let h='';const hr=SCN[scen].clock.split(' ')[
  case 'battery':h+=kv([['Carga',E.soc+'%'],['Potencia',E.charge?'+'+fmtW(E.charge):E.dis?'−'+fmtW(E.dis):'0 W'],['Capacidad','10 kWh'],['Estado',E.charge?'Cargando':E.dis?'Descargando':'Reposo']])+'<button class="wide light" data-act="energy">Ver flujo de energía</button>';break;
  case 'grid':h+=kv([['Importación',fmtW(E.imp)],['Exportación',fmtW(E.exp)],['L1 · L2 · L3','230 · 231 · 229 V'],['Consumo casa',fmtW(E.load)]])+'<button class="wide light" data-act="energy">Ver flujo de energía</button>';break;
  }
- if(FLOWNOTE[d.id])h+='<div class="flowtag">'+I('flow')+'<span><b>Flow:</b> '+FLOWNOTE[d.id]+'</span></div>';
- h+='<div class="soltags">'+SOLS.filter(x=>d.sols.includes(x.id)).map(x=>'<span title="'+x.t+'" style="background:'+x.col+'">'+I(x.ic)+x.n+'</span>').join('')+'</div>';
- h+='<div class="note">Equivalente real: <b>'+d.real+'</b><br>Dispositivo virtual de la casa demo · '+RM[d.room].name+'</div>';
+ if(d.type==='net'&&d.kind==='router')extra+='<div class="note">Redes separadas: <b>Hogar</b> (VLAN 10), <b>IoT</b> (VLAN 20, Homey y domótica), <b>Cámaras</b> (VLAN 30, sin Internet) e <b>Invitados</b> (VLAN 40).</div>';
+ if(FLOWNOTE[d.id])extra+='<div class="flowtag">'+I('flow')+'<span><b>Flow:</b> '+FLOWNOTE[d.id]+'</span></div>';
+ extra+='<div class="note">Equivalente real: <b>'+d.real+'</b></div>';
+ h+='<div class="soltags">'+SOLS.filter(x=>d.sols.includes(x.id)).map(x=>'<span title="'+x.n+'" style="background:'+x.col+'">'+I(x.ic)+(x.ns||x.n)+'</span>').join('')+'</div>';
+ h+='<details class="more"'+(moreOpen?' open':'')+'><summary>Más</summary>'+extra+'</details>';
  return h;}
-function openDevice(id){const d=DM[id];selDev=id;selRoom=null;renderRooms();setAside(false);
+function openDevice(id){if(selDev!==id)moreOpen=false;const d=DM[id];selDev=id;selRoom=null;renderRooms();setAside(false);
  const a=isActive(d);
  ph.innerHTML='<div class="bigicon'+(a?' act '+accent(d):'')+'">'+I(d.icon)+'</div><div><h2>'+d.name+'</h2><div class="sub">'+RM[d.room].name+' · <span id="stxt">'+stateText(d)+'</span></div></div><button class="x" data-close>'+I('x')+'</button>';
  const sc=pb.scrollTop;pb.innerHTML=deviceBody(d);pb.scrollTop=sc;panel.classList.add('open');bindPanel();D.forEach(updateMarker);}
 function refreshOpen(){if(selDev)openDevice(selDev);else if(selRoom)showRoomPanel(selRoom);}
 function bindPanel(){
  ph.querySelector('[data-close]').onclick=closePanel;
+ const md=pb.querySelector('details.more');if(md)md.addEventListener('toggle',()=>{moreOpen=md.open;});
  const d=selDev&&DM[selDev];
  pb.querySelectorAll('[data-dev]').forEach(b=>b.onclick=()=>openDevice(b.dataset.dev));
  pb.querySelectorAll('[data-amb]').forEach(b=>b.onclick=()=>ambiente(b.dataset.amb));
@@ -2313,7 +2387,7 @@ function apClients(d){return d.s.online&&DM.n_router.s.online?Math.max(0,d.cl+Ma
 function vlanIoT(){return D.filter(d=>d.type!=='net'&&/WiFi|IP|OCPP|Smart TV|Sonos|Huawei|Shelly|Netatmo|Ecowitt|Somfy|módulo|Home Connect/i.test(d.real)).length+1;}
 function netText(d){const s=d.s;if(!s.online||(d.kind==='ap'&&!DM.n_router.s.online))return 'Sin conexión';if(d.kind==='router')return 'Online · '+D.filter(x=>x.kind==='ap').reduce((a,x)=>a+apClients(x),0)+' clientes Wi-Fi · ↓ 938 Mb/s';if(d.kind==='switch')return 'Online · 11/16 puertos · PoE 41 W';return 'Online · '+apClients(d)+' clientes · '+(apClients(d)*3+12)+' Mb/s';}
 function netBody(d){const s=d.s;let h='';const on=s.online;
- if(d.kind==='router')h+=kv([['Estado',on?'Online':'Reiniciando…'],['Fibra','1 Gb/s simétrico'],['Velocidad',on?'↓ 938 / ↑ 612 Mb/s':'—'],['Clientes Wi-Fi',D.filter(x=>x.kind==='ap').reduce((a,x)=>a+apClients(x),0)+''],['VLAN IoT',vlanIoT()+' dispositivos'],['Red invitados',s.guest?'Activa':'Desactivada']])+'<div class="row"><button class="chip'+(s.guest?' on':'')+'" data-act="guest">'+(s.guest?'Desactivar red de invitados':'Activar red de invitados')+'</button><button class="chip" data-act="reboot">Reiniciar</button></div><div class="note">Redes separadas: <b>Hogar</b> (VLAN 10), <b>IoT</b> (VLAN 20, con Homey y los dispositivos domóticos), <b>Cámaras</b> (VLAN 30, sin salida a Internet) e <b>Invitados</b> (VLAN 40).</div>';
+ if(d.kind==='router')h+=kv([['Estado',on?'Online':'Reiniciando…'],['Fibra','1 Gb/s simétrico'],['Velocidad',on?'↓ 938 / ↑ 612 Mb/s':'—'],['Clientes Wi-Fi',D.filter(x=>x.kind==='ap').reduce((a,x)=>a+apClients(x),0)+''],['VLAN IoT',vlanIoT()+' dispositivos'],['Red invitados',s.guest?'Activa':'Desactivada']])+'<div class="row"><button class="chip'+(s.guest?' on':'')+'" data-act="guest">'+(s.guest?'Desactivar red de invitados':'Activar red de invitados')+'</button><button class="chip" data-act="reboot">Reiniciar</button></div>';
  if(d.kind==='switch')h+=kv([['Estado',on?'Online':'Reiniciando…'],['Puertos','11/16 en uso'],['PoE','41 W de 120 W (3 AP + rack)'],['VLAN IoT',vlanIoT()+' dispositivos'],['VLANs','10 Hogar · 20 IoT · 30 Cámaras · 40 Invitados'],['Cableado','Cat 6 a cada planta y al garaje']])+'<button class="wide light" data-act="reboot">Reiniciar</button>';
  if(d.kind==='ap')h+=kv([['Estado',netText(d).split(' · ')[0]],['Clientes',apClients(d)+''],['Tráfico',on?(apClients(d)*3+12)+' Mb/s':'0 Mb/s'],['Wi-Fi','6 · 2,4 + 5 GHz · Mesh'],['Backhaul','Cable (PoE) · excelente'],['SSID','Casa · Casa-IoT · Invitados']])+'<button class="wide light" data-act="reboot">Reiniciar punto de acceso</button>';
  return h;}
